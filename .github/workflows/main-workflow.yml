@@ -17,12 +17,12 @@ jobs:
       
       - name: tshirts fail
         if: always()
-        run: node tshirts.js
+        run: node tshirts.mjs
 
       - name: misaligned fail
         if: always()
-        run: node misaligned.js
+        run: node misaligned.mjs
 
-      - name: alerter fail
+      - name: weather fail
         if: always()
-        run: node alerter.js
+        run: node weatherreport.mjs
