@@ -6,7 +6,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -18,9 +17,19 @@ jobs:
       
       - name: tshirts fail
         run: node tshirts.js
+        continue-on-error: true
 
       - name: misaligned fail
         run: node misaligned.js
+        continue-on-error: true
 
       - name: alerter fail
         run: node alerter.js
+        continue-on-error: true
+
+      - name: Fail job if any step failed
+        run: |
+          if [ ${{ job.status }} != 'success' ]; then
+            echo "One or more steps failed!"
+            exit 1
+          fi
