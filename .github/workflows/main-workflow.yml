@@ -16,20 +16,13 @@ jobs:
         run:  npm install
       
       - name: tshirts fail
+        if: always()
         run: node tshirts.js
-        continue-on-error: true
 
       - name: misaligned fail
+        if: always()
         run: node misaligned.js
-        continue-on-error: true
 
       - name: alerter fail
+        if: always()
         run: node alerter.js
-        continue-on-error: true
-
-      - name: Fail job if any step failed
-        run: |
-          if [ ${{ job.status }} != 'success' ]; then
-            echo "One or more steps failed!"
-            exit 1
-          fi
